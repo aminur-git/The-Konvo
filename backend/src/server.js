@@ -10,6 +10,9 @@ const app = express();
 const __dirname = path.resolve();
 const port = process.env.PORT;
 
+app.use("/api/auth", router)
+app.use("/api/message", messageRouter)
+
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "../frontend/dist")))
 
@@ -18,8 +21,7 @@ if (process.env.NODE_ENV === "production") {
     })
 }
 
-app.use("/api/auth", router)
-app.use("/api/message", messageRouter)
+
 
 
 app.listen(port, () => {
